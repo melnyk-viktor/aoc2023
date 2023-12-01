@@ -12,7 +12,13 @@ func main () {
 	fmt.Println("AoC 2023 Day", fname[len(fname) - 1][4:])
 	// AOC naming end
 
-	// Solution
+	// Solution 1
+
+
+	// Solution 2
+
 
 	return
 }
+
+var inout = ``
