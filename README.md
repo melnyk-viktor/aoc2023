@@ -4,8 +4,11 @@ For puzzles please visit [AoC website](https://adventofcode.com/2023)
 
 ## Have fun!!!
 
-Solutions are designed to run as follows:
+Solutions are designed to run as:
 
 ```bash
-go run main<number of day>.go
+go run main.go
 ```
+
+Disclamer:
+No quality code found here.
