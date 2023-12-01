@@ -8,7 +8,7 @@ import (
 	"unicode"
 )
 
-func Solution () {
+func Solution() {
 	// AOC naming start
 	fmt.Println("AoC 2023 Day 1")
 	// AOC naming end
@@ -73,7 +73,7 @@ func Solution () {
 		}
 
 		// check for start digit in normal notation
- 		for _, n := range str[:start_index] {  // change index to s_i for 2nd approach and use whole string
+		for _, n := range str[:start_index] { // change index to s_i for 2nd approach and use whole string
 			// Uncomment below for 2nd approach
 			// for d_i, s_digit := range s_digits {
 			// 	if strings.HasPrefix(str[s_i:], s_digit) {
@@ -89,7 +89,7 @@ func Solution () {
 		// start_break:  // uncomment below for 2nd approach
 
 		// check for end digit in normal form
-		for i := len(str) - 1; i > end_index; i-- {  // use whole string in 2nd approach
+		for i := len(str) - 1; i > end_index; i-- { // use whole string in 2nd approach
 			// Uncomment below for 2nd approach
 			// for d_i, s_digit := range s_digits {
 			// 	if strings.HasPrefix(str[i:], s_digit) {
