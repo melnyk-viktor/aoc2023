@@ -15,6 +15,7 @@ func main() {
 	// Solution 2
 
 
+	fmt.Println()
 	return
 }
 
