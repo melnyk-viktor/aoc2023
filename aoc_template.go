@@ -1,15 +1,12 @@
-package main
+package dayN
 
 import (
 	"fmt"
-	"os"
-	"strings"
 )
 
-func main () {
+func main() {
 	// AOC naming start
-	fname := strings.Split(os.Args[0], "/")
-	fmt.Println("AoC 2023 Day", fname[len(fname) - 1][4:])
+	fmt.Println("AoC 2023 Day N")
 	// AOC naming end
 
 	// Solution 1
