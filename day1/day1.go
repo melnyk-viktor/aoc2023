@@ -14,7 +14,7 @@ func Solution() {
 	// AOC naming end
 
 	// Solution 1
-	scanner := bufio.NewScanner(strings.NewReader(input))
+	scanner := bufio.NewScanner(strings.NewReader(INPUT))
 	var sum int
 	for scanner.Scan() {
 		str := scanner.Text()
@@ -48,10 +48,10 @@ func Solution() {
 	// Solution 2
 	// Commented-out parts are less efficient solution*
 	s_digits := []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
-	scanner_2 := bufio.NewScanner(strings.NewReader(input))
-	var sum_2 int
-	for scanner_2.Scan() {
-		str := scanner_2.Text()
+	scanner = bufio.NewScanner(strings.NewReader(INPUT))
+	sum = 0
+	for scanner.Scan() {
+		str := scanner.Text()
 
 		start_index, end_index := len(str), -1
 		var start, end, s_num string
@@ -106,15 +106,14 @@ func Solution() {
 
 		s_num = start + end
 		num, _ = strconv.Atoi(s_num)
-		sum_2 += num
+		sum += num
 	}
-	fmt.Println("\tSolution 2:", sum_2)
+	fmt.Println("\tSolution 2:", sum)
 
 	fmt.Println()
-	return
 }
 
-var input = `sixrrmlkptmc18zhvninek
+var INPUT = `sixrrmlkptmc18zhvninek
 jcb82eightwond
 twofourthree778nineeight
 sqpxs1cgcrmctlgqvzxbcjzgr

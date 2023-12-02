@@ -22,8 +22,8 @@ For puzzles please visit [AoC website](https://adventofcode.com/2023)
 
 Solutions are designed to run as:
 
-```bash
-go run main.go
+```sh
+go run main.go --all
 ```
 
 Inputs are hardcoded, to display my personal solutions,
