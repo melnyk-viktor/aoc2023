@@ -3,6 +3,7 @@ package main
 import (
 	"aoc2023/day1"
 	"aoc2023/day2"
+	"aoc2023/day3"
 	"flag"
 	"fmt"
 	"slices"
@@ -13,6 +14,7 @@ import (
 var day_mapping = []func(){
 	day1.Solution,
 	day2.Solution,
+	day3.Solution,
 }
 
 func main() {

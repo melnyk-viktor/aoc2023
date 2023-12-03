@@ -16,7 +16,6 @@ func Solution() {
 
 
 	fmt.Println()
-	return
 }
 
-var input = ``
+var INPUT = ``
