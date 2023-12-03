@@ -6,9 +6,11 @@ import (
 	"aoc2023/day3"
 	"flag"
 	"fmt"
+	"math/rand"
 	"slices"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var day_mapping = []func(){
@@ -20,21 +22,8 @@ var day_mapping = []func(){
 func main() {
 
 	// Decoration
-	fmt.Println(`
-	    _\/_
-	     /\
-	     /\
-	    /  \
-	    /~~\o
-	   /o   \
-	  /~~*~~~\
-	 o/    o \
-	 /~~~~~~~~\~'
-	/__*_______\
-	     ||
-	   \====/
-	    \__/
-	`)
+	rand.Seed(time.Now().Unix())
+	fmt.Println(ART[rand.Intn(len(ART))])
 
 	// NOTE: --input and --inputs can be added, but passing list of files for --days and --all flags is too much for simple cli, that is why input is hardcoded.
 	// Also it is not elegant to just restrict input files to some folder and/or naming scheme to parse them automatically, but that is also an option.
@@ -67,4 +56,51 @@ func main() {
 			day_mapping[n_day]()
 		}
 	}
+}
+
+var ART = []string {
+	`
+	    _\/_
+	     /\
+	     /\
+	    /  \
+	    /~~\o
+	   /o   \
+	  /~~*~~~\
+	 o/    o \
+	 /~~~~~~~~\~'
+	/__*_______\
+	     ||
+	   \====/
+	    \__/
+	`,
+	`
+	   *        *        *        __o    *       *
+	*      *       *        *    /_| _     *
+	   K  *     K      *        O'_)/ \  *    *
+	  <')____  <')____    __*   V   \  ) __  *
+	   \ ___ )--\ ___ )--( (    (___|__)/ /*     *
+	 *  |   |    |   |  * \ \____| |___/ /  *
+		|*  |    |   | aos \____________/       *
+	`,
+	`
+	            .-~~\
+	           /     \ _
+	           ~x   .-~_)_
+	             ~x".-~   ~-.
+	         _   ( /         \   _
+	         ||   T  o  o     Y  ||
+	       ==:l   l   <       !  I;==
+	          \\   \  .__/   /  //
+	           \\ ,r"-,___.-'r.//
+	            }^ \.( )   _.'//.
+	           /    }~Xi--~  //  \
+	          Y    Y I\ \    "    Y
+	          |    | |o\ \        |
+	          |    l_l  Y T       |  -Row
+	          l      "o l_j       !
+	           \                 /
+	    ___,.---^.     o       .^---.._____
+	"~~~          "           ~            ~~~"
+	`,
 }

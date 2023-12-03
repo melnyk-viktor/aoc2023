@@ -17,7 +17,7 @@ func Solution() {
 	lines := strings.Split(INPUT, "\n")
 	var sum int
 	for i, line := range lines {
-		for j := 0; j < len(line); j++ {
+		for j := 0; j < len(line); j++ { // With jumps
 			var res string
 			var part_num bool
 
@@ -35,6 +35,7 @@ func Solution() {
 						}
 					}
 
+					// Grow resulting number or if fully grown, jump
 					if !unicode.IsNumber(rune(line[x_run])) && x != x_run {
 						j = x_run // Jump
 						break
@@ -75,6 +76,7 @@ func Solution() {
 						}
 					}
 
+					// Grow resulting number or if fully grown, jump
 					if !unicode.IsNumber(rune(line[x_run])) && x != x_run {
 						j = x_run // Jump
 						break
