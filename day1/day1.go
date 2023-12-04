@@ -8,14 +8,13 @@ import (
 	"unicode"
 )
 
-func Solution() {
+func Solution() (solution1, solution2 int) {
 	// AOC naming start
 	fmt.Println("AoC 2023 Day 1")
 	// AOC naming end
 
 	// Solution 1
 	scanner := bufio.NewScanner(strings.NewReader(INPUT))
-	var sum int
 	for scanner.Scan() {
 		str := scanner.Text()
 
@@ -23,7 +22,7 @@ func Solution() {
 		var s_num string
 		var num int
 
-		// check for start digit
+		// check for start digit and break
 		for _, n := range str {
 			if unicode.IsNumber(n) {
 				start = n
@@ -31,7 +30,7 @@ func Solution() {
 			}
 		}
 
-		// check for end digit
+		// check for end digit and break
 		for i := len(str) - 1; i >= 0; i-- {
 			if unicode.IsNumber(rune(str[i])) {
 				end = rune(str[i])
@@ -41,15 +40,13 @@ func Solution() {
 
 		s_num = string(start) + string(end)
 		num, _ = strconv.Atoi(s_num)
-		sum += num
+		solution1 += num
 	}
-	fmt.Println("\tSolution 1:", sum)
 
 	// Solution 2
 	// Commented-out parts are less efficient solution*
 	s_digits := []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 	scanner = bufio.NewScanner(strings.NewReader(INPUT))
-	sum = 0
 	for scanner.Scan() {
 		str := scanner.Text()
 
@@ -72,7 +69,7 @@ func Solution() {
 			}
 		}
 
-		// check for start digit in normal notation
+		// check for start digit in normal form and break
 		for _, n := range str[:start_index] { // change index to s_i for 2nd approach and use whole string
 			// Uncomment below for 2nd approach
 			// for d_i, s_digit := range s_digits {
@@ -88,7 +85,7 @@ func Solution() {
 		}
 		// start_break:  // uncomment below for 2nd approach
 
-		// check for end digit in normal form
+		// check for end digit in normal form and bresk
 		for i := len(str) - 1; i > end_index; i-- { // use whole string in 2nd approach
 			// Uncomment below for 2nd approach
 			// for d_i, s_digit := range s_digits {
@@ -106,11 +103,10 @@ func Solution() {
 
 		s_num = start + end
 		num, _ = strconv.Atoi(s_num)
-		sum += num
+		solution2 += num
 	}
-	fmt.Println("\tSolution 2:", sum)
 
-	fmt.Println()
+	return
 }
 
 var INPUT = `sixrrmlkptmc18zhvninek

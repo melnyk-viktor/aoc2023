@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func Solution() {
+func Solution() (solution1, solution2 int) {
 	// AOC naming start
 	fmt.Println("AoC 2023 Day N")
 	// AOC naming end
@@ -15,7 +15,7 @@ func Solution() {
 	// Solution 2
 
 
-	fmt.Println()
+	return
 }
 
 var INPUT = ``

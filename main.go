@@ -4,25 +4,25 @@ import (
 	"aoc2023/day1"
 	"aoc2023/day2"
 	"aoc2023/day3"
+	"aoc2023/day4"
 	"flag"
 	"fmt"
 	"math/rand"
 	"slices"
 	"strconv"
 	"strings"
-	"time"
 )
 
-var day_mapping = []func(){
+var day_mapping = []func()(int, int){
 	day1.Solution,
 	day2.Solution,
 	day3.Solution,
+	day4.Solution,
 }
 
 func main() {
 
 	// Decoration
-	rand.Seed(time.Now().Unix())
 	fmt.Println(ART[rand.Intn(len(ART))])
 
 	// NOTE: --input and --inputs can be added, but passing list of files for --days and --all flags is too much for simple cli, that is why input is hardcoded.
@@ -53,7 +53,8 @@ func main() {
 	// Solutions
 	for n_day := 0; n_day < len(day_mapping); n_day++ {
 		if slices.Contains(days_to_display, strconv.Itoa(n_day+1)) || *all_flag {
-			day_mapping[n_day]()
+			s1, s2 := day_mapping[n_day]()
+			fmt.Printf("\tSolution 1: %d\n\tSolution 2: %d\n\n", s1, s2)
 		}
 	}
 }

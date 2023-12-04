@@ -8,14 +8,13 @@ import (
 	"unicode"
 )
 
-func Solution() {
+func Solution() (solution1, solution2 int){
 	// AOC naming start
 	fmt.Println("AoC 2023 Day 3")
 	// AOC naming end
 
 	// Solution 1
 	lines := strings.Split(INPUT, "\n")
-	var sum int
 	for i, line := range lines {
 		for j := 0; j < len(line); j++ { // With jumps
 			var res string
@@ -46,16 +45,15 @@ func Solution() {
 
 				if part_num {
 					val, _ := strconv.Atoi(res)
-					sum += val
+					solution1 += val
 				}
 			}
 		}
 	}
-	fmt.Println("\tSolution 1:", sum)
 
 	// Solution 2
+	// TODO: optimize by looking for gears and grow numbers into both/one direction depending on whe way they neighbor gear
 	lines = strings.Split(INPUT, "\n")
-	sum = 0
 	var gears = map[string][]int{}
 	for i, line := range lines {
 		for j := 0; j < len(line); j++ {
@@ -97,12 +95,11 @@ func Solution() {
 	// separate gears and sum gear ratios
 	for _, v := range gears {
 		if len(v) > 1 {
-			sum += v[0] * v[1]
+			solution2 += v[0] * v[1]
 		}
 	}
-	fmt.Println("\tSolution 2:", sum)
 
-	fmt.Println()
+	return
 }
 
 var INPUT = `.......358..........31.....339.....669.............598......328.....575......................447..650..............964...........692........

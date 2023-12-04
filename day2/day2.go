@@ -7,13 +7,13 @@ import (
 	"strings"
 )
 
-func Solution() {
+func Solution() (solution1, solution2 int) {
 	// AOC naming start
 	fmt.Println("AoC 2023 Day 2")
 	// AOC naming end
 
 	// Solution 1
-	var count, sum = 0, 0
+	var count = 0
 	scanner := bufio.NewScanner(strings.NewReader(INPUT))
 	for scanner.Scan() {
 		count += 1
@@ -38,13 +38,12 @@ func Solution() {
 
 		// NOTE: Long if can be separeted into 3 ifs with reverse logic and continue, with increment after them
 		if COLOR_MAX["red"] >= game["red"] && COLOR_MAX["green"] >= game["green"] && COLOR_MAX["blue"] >= game["blue"] {
-			sum += count
+			solution1 += count
 		}
 	}
-	fmt.Println("\tSolution 1:", sum)
 
 	// Solution 2
-	count, sum = 0, 0
+	count = 0
 	scanner = bufio.NewScanner(strings.NewReader(INPUT))
 	for scanner.Scan() {
 		count += 1
@@ -56,7 +55,7 @@ func Solution() {
 		for _, s_turn := range game_turns {
 			colors := strings.Split(s_turn, ", ")
 
-			for _, s_color_val := range colors {
+			for _, s_color_val := range colors { // Runs 3 timex
 				c_val := strings.Split(s_color_val, " ")
 				color := c_val[1]
 				value, _ := strconv.Atoi(c_val[0])
@@ -66,11 +65,10 @@ func Solution() {
 				}
 			}
 		}
-		sum += game["red"] * game["green"] * game["blue"]	
+		solution2 += game["red"] * game["green"] * game["blue"]	
 	}
-	fmt.Println("\tSolution 2:", sum)
 
-	fmt.Println()
+	return
 }
 
 var COLOR_MAX = map[string]int {
