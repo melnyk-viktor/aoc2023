@@ -23,7 +23,23 @@ For puzzles please visit [AoC website](https://adventofcode.com/2023)
 Solutions are designed to run as:
 
 ```sh
-go run main.go --all
+$ go run main.go --all
+```
+
+For more options, please run:
+
+```sh
+$ go run main.go --help
+```
+
+```sh
+Usage of ./aoc2023:
+  -all
+        Run all solutions
+  -day string
+        Run solution for given day
+  -days string
+        Comma-separated list of days to run solutions for
 ```
 
 Inputs are hardcoded, to display my personal solutions,

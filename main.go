@@ -5,6 +5,7 @@ import (
 	"aoc2023/day2"
 	"aoc2023/day3"
 	"aoc2023/day4"
+	"aoc2023/day5"
 	"flag"
 	"fmt"
 	"math/rand"
@@ -13,15 +14,16 @@ import (
 	"strings"
 )
 
+// Solutions mapping
 var day_mapping = []func()(int, int){
 	day1.Solution,
 	day2.Solution,
 	day3.Solution,
 	day4.Solution,
+	day5.Solution,
 }
 
 func main() {
-
 	// Decoration
 	fmt.Println(ART[rand.Intn(len(ART))])
 
@@ -33,19 +35,22 @@ func main() {
 	all_flag := flag.Bool("all", false, "Run all solutions")
 	flag.Parse()
 
+	// Check exclusivity of flags
 	if (*day_option != "" && *days_option != "") || (*day_option != "" && *all_flag) || (*all_flag && *days_option != "") {
 		fmt.Println("Flags are exclusive")
 		return // NOTE: maybe use os.Exit(1)
 	}
 
+	// Build
 	var days_to_display []string
-	if *day_option != "" {
+	if *day_option != "" { // NOTE: additional check possible for duplicates
 		days_to_display = append(days_to_display, *day_option)
 	}
-	if *days_option != "" {
+	if *days_option != "" { // NOTE: additional check possible for duplicates
 		days_to_display = append(days_to_display, strings.Split(*days_option, ",")...)
 	}
 
+	// Message on no given flags
 	if len(days_to_display) == 0 && !*all_flag {
 		fmt.Println("To display solutions use --day=N, --days=X,Y,Z, or --all")
 	}
@@ -54,6 +59,7 @@ func main() {
 	for n_day := 0; n_day < len(day_mapping); n_day++ {
 		if slices.Contains(days_to_display, strconv.Itoa(n_day+1)) || *all_flag {
 			s1, s2 := day_mapping[n_day]()
+			fmt.Println("AoC 2023 Day", n_day+1)
 			fmt.Printf("\tSolution 1: %d\n\tSolution 2: %d\n\n", s1, s2)
 		}
 	}

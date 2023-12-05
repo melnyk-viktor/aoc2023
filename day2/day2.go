@@ -2,16 +2,11 @@ package day2
 
 import (
 	"bufio"
-	"fmt"
 	"strconv"
 	"strings"
 )
 
 func Solution() (solution1, solution2 int) {
-	// AOC naming start
-	fmt.Println("AoC 2023 Day 2")
-	// AOC naming end
-
 	// Solution 1
 	var count = 0
 	scanner := bufio.NewScanner(strings.NewReader(INPUT))

@@ -1,7 +1,6 @@
 package day3
 
 import (
-	"fmt"
 	"math"
 	"strconv"
 	"strings"
@@ -9,10 +8,6 @@ import (
 )
 
 func Solution() (solution1, solution2 int){
-	// AOC naming start
-	fmt.Println("AoC 2023 Day 3")
-	// AOC naming end
-
 	// Solution 1
 	lines := strings.Split(INPUT, "\n")
 	for i, line := range lines {

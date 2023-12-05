@@ -1,16 +1,11 @@
 package day4
 
 import (
-	"fmt"
 	"slices"
 	"strings"
 )
 
 func Solution() (solution1, solution2 int) {
-	// AOC naming start
-	fmt.Println("AoC 2023 Day 4")
-	// AOC naming end
-
 	// Solution 1
 	lines := strings.Split(INPUT, "\n")
 	for _, line := range lines {
