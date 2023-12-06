@@ -1,9 +1,5 @@
 package dayN
 
-import (
-	"fmt"
-)
-
 func Solution() (solution1, solution2 int) {
 	// Solution 1
 
