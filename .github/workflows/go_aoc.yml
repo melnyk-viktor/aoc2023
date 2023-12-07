@@ -34,5 +34,5 @@ jobs:
 
     - name: Run test
       env: # Or as an environment variable
-        AOC_SECRET: ${{ inputs.AOC_SESSION != '' && inputs.AOC_SESSION || secrets.AOC_SECRET }}
+        AOC_SECRET: ${{ inputs.AOC_SESSION != '' && inputs.AOC_SESSION || secrets.AOC_SESSION }}
       run: go run main.go --all
