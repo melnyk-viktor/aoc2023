@@ -6,6 +6,11 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      AOC_SESSION:
+        description: 'AoC Session Cookie'
+        type: string
 
 jobs:
   build:
@@ -29,5 +34,5 @@ jobs:
 
     - name: Run test
       env: # Or as an environment variable
-        AOC_SECRET: ${{ secrets.AOC_SECRET }}
+        AOC_SECRET: ${{ input.AOC_SESSION != '' && input.AOC_SESSION || secrets.AOC_SECRET }}
       run: go run main.go --all
