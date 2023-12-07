@@ -7,6 +7,7 @@ import (
 	"aoc2023/day4"
 	"aoc2023/day5"
 	"aoc2023/day6"
+	"aoc2023/day7"
 	"flag"
 	"fmt"
 	"math/rand"
@@ -23,6 +24,7 @@ var day_mapping = []func()(int, int){
 	day4.Solution,
 	day5.Solution,
 	day6.Solution,
+	day7.Solution,
 }
 
 func main() {
