@@ -41,7 +41,7 @@ Usage of ./aoc2023:
   -days string
         Comma-separated list of days to run solutions for
   -session string
-        Session cookie for AoC website
+        Session cookie for AoC website, can be set via AOC_SESSION env variable
 ```
 
 > [!WARNING]
