@@ -28,4 +28,6 @@ jobs:
         path: aoc_2023
 
     - name: Run test
+      env: # Or as an environment variable
+        AOC_SECRET: ${{ secrets.AOC_SECRET }}
       run: go run main.go --all

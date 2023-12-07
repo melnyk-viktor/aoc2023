@@ -32,17 +32,28 @@ var day_mapping = []func(string)(int, int){
 var URL = "https://adventofcode.com/2023"
 
 func main() {
+	var (
+		d2d []string
+		se string
+	)
+
 	// Decoration
 	fmt.Println(ART[rand.Intn(len(ART))])
 
 	// NOTE: --input and --inputs can be added, but passing list of files for --days and --all flags is too much for simple cli, that is why input is hardcoded.
 	// Also it is not elegant to just restrict input files to some folder and/or naming scheme to parse them automatically, but that is also an option.
 
-	session := flag.String("session", "", "Session cookie for AoC website")
+	session := flag.String("session", "", "Session cookie for AoC website, can be set via AOC_SESSION env variable")
 	day_option := flag.String("day", "", "Run solution for given day")
 	days_option := flag.String("days", "", "Comma-separated list of days to run solutions for")
 	all_flag := flag.Bool("all", false, "Run all solutions")
 	flag.Parse()
+
+	if *session != "" {
+		se = *session
+	} else {
+		se = os.Getenv("AOC_SESSION")
+	}
 
 	// Check exclusivity of flags
 	if (*day_option != "" && *days_option != "") || (*day_option != "" && *all_flag) || (*all_flag && *days_option != "") {
@@ -51,24 +62,23 @@ func main() {
 	}
 
 	// Build
-	var days_to_display []string
 	if *day_option != "" { // NOTE: additional check possible for duplicates
-		days_to_display = append(days_to_display, *day_option)
+		d2d = append(d2d, *day_option)
 	}
 	if *days_option != "" { // NOTE: additional check possible for duplicates
-		days_to_display = append(days_to_display, strings.Split(*days_option, ",")...)
+		d2d = append(d2d, strings.Split(*days_option, ",")...)
 	}
 
 	// Message on no given flags
-	if len(days_to_display) == 0 && !*all_flag {
+	if len(d2d) == 0 && !*all_flag {
 		fmt.Println("To display solutions use --day=N, --days=X,Y,Z, or --all")
 	}
 
 	// Solutions
 	// NOTE: input athering can be optimized using goroutines
 	for n_day := 0; n_day < len(day_mapping); n_day++ {
-		if slices.Contains(days_to_display, strconv.Itoa(n_day+1)) || *all_flag {
-			input := aoc_utils.GetInputData(URL, strconv.Itoa(n_day+1), *session)
+		if slices.Contains(d2d, strconv.Itoa(n_day+1)) || *all_flag {
+			input := aoc_utils.GetInputData(URL, strconv.Itoa(n_day+1), se)
 			s1, s2 := day_mapping[n_day](input)
 			fmt.Println("AoC 2023 Day", n_day+1)
 			fmt.Printf("\tSolution 1: %d\n\tSolution 2: %d\n\n", s1, s2)
