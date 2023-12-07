@@ -40,10 +40,9 @@ Usage of ./aoc2023:
         Run solution for given day
   -days string
         Comma-separated list of days to run solutions for
+  -session string
+        Session cookie for AoC website
 ```
-
-Inputs are hardcoded, to display my personal solutions,
-change if needed in code.
 
 > [!WARNING]
 > No quality code found here.

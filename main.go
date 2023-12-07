@@ -1,6 +1,7 @@
 package main
 
 import (
+	"aoc2023/aoc_utils"
 	"aoc2023/day1"
 	"aoc2023/day2"
 	"aoc2023/day3"
@@ -11,13 +12,14 @@ import (
 	"flag"
 	"fmt"
 	"math/rand"
+	"os"
 	"slices"
 	"strconv"
 	"strings"
 )
 
 // Solutions mapping
-var day_mapping = []func()(int, int){
+var day_mapping = []func(string)(int, int){
 	day1.Solution,
 	day2.Solution,
 	day3.Solution,
@@ -27,6 +29,8 @@ var day_mapping = []func()(int, int){
 	day7.Solution,
 }
 
+var URL = "https://adventofcode.com/2023"
+
 func main() {
 	// Decoration
 	fmt.Println(ART[rand.Intn(len(ART))])
@@ -34,6 +38,7 @@ func main() {
 	// NOTE: --input and --inputs can be added, but passing list of files for --days and --all flags is too much for simple cli, that is why input is hardcoded.
 	// Also it is not elegant to just restrict input files to some folder and/or naming scheme to parse them automatically, but that is also an option.
 
+	session := flag.String("session", "", "Session cookie for AoC website")
 	day_option := flag.String("day", "", "Run solution for given day")
 	days_option := flag.String("days", "", "Comma-separated list of days to run solutions for")
 	all_flag := flag.Bool("all", false, "Run all solutions")
@@ -42,7 +47,7 @@ func main() {
 	// Check exclusivity of flags
 	if (*day_option != "" && *days_option != "") || (*day_option != "" && *all_flag) || (*all_flag && *days_option != "") {
 		fmt.Println("Flags are exclusive")
-		return // NOTE: maybe use os.Exit(1)
+		os.Exit(1)
 	}
 
 	// Build
@@ -60,9 +65,11 @@ func main() {
 	}
 
 	// Solutions
+	// NOTE: input athering can be optimized using goroutines
 	for n_day := 0; n_day < len(day_mapping); n_day++ {
 		if slices.Contains(days_to_display, strconv.Itoa(n_day+1)) || *all_flag {
-			s1, s2 := day_mapping[n_day]()
+			input := aoc_utils.GetInputData(URL, strconv.Itoa(n_day+1), *session)
+			s1, s2 := day_mapping[n_day](input)
 			fmt.Println("AoC 2023 Day", n_day+1)
 			fmt.Printf("\tSolution 1: %d\n\tSolution 2: %d\n\n", s1, s2)
 		}
