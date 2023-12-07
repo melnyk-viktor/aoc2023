@@ -7,7 +7,7 @@ import (
 	"unicode"
 )
 
-func Solution(input string) (solution1, solution2 int){
+func Solution(input string) (solution1, solution2 int) {
 	// Solution 1
 	lines := strings.Split(input, "\n")
 	for i, line := range lines {

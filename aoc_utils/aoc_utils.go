@@ -51,10 +51,9 @@ func GetInputData(url string, nd string, session string) string {
 
 	if session == "" {
 		data := strings.Split(strings.Split(string(resBody), "<pre><code>")[1], "</code>")[0]
-		data = strings.TrimSuffix(data, "\n")
-		data = strings.TrimPrefix(data, "\n")
+		data = strings.TrimSpace(data)
 		return data
 	}
 
-	return string(resBody)
+	return strings.TrimSpace(string(resBody))
 }
