@@ -60,14 +60,14 @@ func Solution(input string) (solution1, solution2 int) {
 				}
 			}
 		}
-		solution2 += game["red"] * game["green"] * game["blue"]	
+		solution2 += game["red"] * game["green"] * game["blue"]
 	}
 
 	return
 }
 
-var COLOR_MAX = map[string]int {
-	"red": 12,
+var COLOR_MAX = map[string]int{
+	"red":   12,
 	"green": 13,
-	"blue": 14,
+	"blue":  14,
 }

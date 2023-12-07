@@ -10,13 +10,13 @@ import (
 )
 
 func GetInputData(url string, nd string, session string) string {
-	cookie := &http.Cookie {
-		Name: "session",
+	cookie := &http.Cookie{
+		Name:  "session",
 		Value: session,
 	}
 
-	client := &http.Client {
-		Jar: &cookiejar.Jar{},
+	client := &http.Client{
+		Jar:       &cookiejar.Jar{},
 		Transport: &http.Transport{},
 	}
 

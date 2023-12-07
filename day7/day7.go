@@ -7,10 +7,10 @@ import (
 )
 
 type Hand struct {
-	Bid int
-	Cards string
+	Bid           int
+	Cards         string
 	WildCardsCoef int
-	HandMaximums [2]int
+	HandMaximums  [2]int
 }
 
 // Card power mapping with Jacks (normal)
@@ -50,13 +50,13 @@ var pow_map_j = map[rune]int{
 func Solution(input string) (solution1, solution2 int) {
 	// Solution 1
 	/*
-	Representation combinations as min-max card counts:
-		five of a kind:  [5,0]
-		four of a kind:  [4,1]
-		full house:      [3,2]
-		three of a kind: [3,1]
-		two of a kind:   [2,1]
-		one of a kind:   [1,1]
+		Representation combinations as min-max card counts:
+			five of a kind:  [5,0]
+			four of a kind:  [4,1]
+			full house:      [3,2]
+			three of a kind: [3,1]
+			two of a kind:   [2,1]
+			one of a kind:   [1,1]
 	*/
 
 	hands := strings.Split(input, "\n")
@@ -66,7 +66,7 @@ func Solution(input string) (solution1, solution2 int) {
 		cards := strings.Split(hand_s, " ")[0]
 		wild := strings.Count(cards, "J")
 		hand := Hand{Cards: cards, Bid: bid, WildCardsCoef: wild}
-		
+
 		// consider max and min cardz to determine combination cases (full house)
 		for ki := 0; ki < len(cards); ki++ { // max 4 iterations
 			cc := strings.Count(cards, string(cards[ki]))
@@ -111,24 +111,24 @@ func Solution(input string) (solution1, solution2 int) {
 	var rhs []Hand
 	for i := len(interm_strengths) - 1; i >= 0; i-- { // reversed sequence for ease of summing up later results of rank * bid
 		strength := interm_strengths[i]
-		sort.Slice(strength, 
+		sort.Slice(strength,
 			func(x, y int) bool {
 				for i := 0; i < len(strength[x].Cards); i++ { // compare every char until diff
-					if pow_map[rune(strength[x].Cards[i])] < pow_map[rune(strength[y].Cards[i])]{
+					if pow_map[rune(strength[x].Cards[i])] < pow_map[rune(strength[y].Cards[i])] {
 						return true
-					} else if pow_map[rune(strength[x].Cards[i])] > pow_map[rune(strength[y].Cards[i])]{
+					} else if pow_map[rune(strength[x].Cards[i])] > pow_map[rune(strength[y].Cards[i])] {
 						return false
 					}
 				}
 				return false
 			},
 		)
-		
+
 		rhs = append(rhs, strength...) // merge sequantially
 	}
 
 	for i, hand := range rhs {
-		solution1 += hand.Bid * (i+1)
+		solution1 += hand.Bid * (i + 1)
 	}
 
 	// Solution 2
@@ -138,9 +138,9 @@ func Solution(input string) (solution1, solution2 int) {
 		bid, _ := strconv.Atoi(strings.Split(hand_s, " ")[1])
 		cards := strings.Split(hand_s, " ")[0]
 		ctrunc := strings.ReplaceAll(cards, "J", "") // cut out wild cards
-		wild := strings.Count(cards, "J") // wild card impact value
+		wild := strings.Count(cards, "J")            // wild card impact value
 		hand := Hand{Cards: cards, Bid: bid, WildCardsCoef: wild}
-		
+
 		// consider max and min cardz to determine combination cases (full house)
 		for ki := 0; ki < len(ctrunc); ki++ { // max 4 iterations
 			cc := strings.Count(cards, string(ctrunc[ki]))
@@ -186,26 +186,25 @@ func Solution(input string) (solution1, solution2 int) {
 	rhs = []Hand{}
 	for i := len(interm_strengths) - 1; i >= 0; i-- { // reversed sequence for ease of summing up later results of rank * bid
 		strength := interm_strengths[i]
-		sort.Slice(strength, 
+		sort.Slice(strength,
 			func(x, y int) bool {
 				for i := 0; i < len(strength[x].Cards); i++ { // compare every char until diff
-					if pow_map_j[rune(strength[x].Cards[i])] < pow_map_j[rune(strength[y].Cards[i])]{
+					if pow_map_j[rune(strength[x].Cards[i])] < pow_map_j[rune(strength[y].Cards[i])] {
 						return true
-					} else if pow_map_j[rune(strength[x].Cards[i])] > pow_map_j[rune(strength[y].Cards[i])]{
+					} else if pow_map_j[rune(strength[x].Cards[i])] > pow_map_j[rune(strength[y].Cards[i])] {
 						return false
 					}
 				}
 				return false
 			},
 		)
-		
+
 		rhs = append(rhs, strength...) // merge sequantially
 	}
 
 	for i, hand := range rhs {
-		solution2 += hand.Bid * (i+1)
+		solution2 += hand.Bid * (i + 1)
 	}
-
 
 	return
 }

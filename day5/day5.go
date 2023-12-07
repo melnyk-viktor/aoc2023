@@ -17,7 +17,7 @@ func Solution(input string) (solution1, solution2 int) {
 	s_stp := strings.Split(strings.Split(input, "\n")[0], " ")[1:]
 
 	var (
-		stp_in []int
+		stp_in  []int
 		stp_out []int
 	)
 
@@ -37,7 +37,7 @@ func Solution(input string) (solution1, solution2 int) {
 
 			for i := 0; i < len(stp_in); i++ { // Translate via move if needed
 				if stp_in[i] >= src && stp_in[i] < src+rlen {
-					stp_out = append(stp_out, dest + (stp_in[i] - src))
+					stp_out = append(stp_out, dest+(stp_in[i]-src))
 
 					// Handle pop
 					stp_in = append(stp_in[:i], stp_in[i+1:]...)
@@ -68,13 +68,13 @@ func Solution(input string) (solution1, solution2 int) {
 		mapping_lines := strings.Split(mapping, "\n")[1:]
 		for i := 0; i < len(ranges); i++ { // Every range in every map, simple loop for pop functionality
 			rn := ranges[i]
-			for _, moves := range mapping_lines {  // Combine map moves with range
+			for _, moves := range mapping_lines { // Combine map moves with range
 				s_vals := strings.Split(moves, " ")
 				dest, _ := strconv.Atoi(s_vals[0])
 				ms, _ := strconv.Atoi(s_vals[1])
 				mlen, _ := strconv.Atoi(s_vals[2])
 
-				if rn.Start <= (ms + mlen) - 1 && ms <= rn.End {
+				if rn.Start <= (ms+mlen)-1 && ms <= rn.End {
 					// Pre
 					if rn.Start < ms {
 						ranges = append(ranges, Interval{Start: rn.Start, End: ms - 1})
@@ -84,13 +84,13 @@ func Solution(input string) (solution1, solution2 int) {
 					formed_moves = append(
 						formed_moves,
 						Interval{
-							Start: int(math.Max(float64(rn.Start), float64(ms))) - ms + dest, // start at dest + dist_from_start (dist from start can be 0)
-							End: int(math.Min(float64(rn.End), float64((ms + mlen) - 1))) - ms + dest, // end at dest + len_of_interval
+							Start: int(math.Max(float64(rn.Start), float64(ms))) - ms + dest,        // start at dest + dist_from_start (dist from start can be 0)
+							End:   int(math.Min(float64(rn.End), float64((ms+mlen)-1))) - ms + dest, // end at dest + len_of_interval
 						},
 					)
 
 					// Post
-					if rn.End > (ms + mlen) - 1 {
+					if rn.End > (ms+mlen)-1 {
 						ranges = append(ranges, Interval{Start: (ms + mlen), End: rn.End})
 					}
 

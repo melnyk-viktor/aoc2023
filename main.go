@@ -19,7 +19,7 @@ import (
 )
 
 // Solutions mapping
-var day_mapping = []func(string)(int, int){
+var day_mapping = []func(string) (int, int){
 	day1.Solution,
 	day2.Solution,
 	day3.Solution,
@@ -34,7 +34,7 @@ var URL = "https://adventofcode.com/2023"
 func main() {
 	var (
 		d2d []string
-		se string
+		se  string
 	)
 
 	// Decoration
@@ -86,7 +86,7 @@ func main() {
 	}
 }
 
-var ART = []string {
+var ART = []string{
 	`
 	    _\/_
 	     /\

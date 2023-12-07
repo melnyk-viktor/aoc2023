@@ -38,7 +38,7 @@ func Solution(input string) (solution1, solution2 int) {
 		winning_numbers := strings.Split(strings.Split(str, " | ")[0], " ")
 		got_numbers := strings.Split(strings.Split(str, " | ")[1], " ")
 
-		win_runner := i 
+		win_runner := i
 		for _, winning_number := range winning_numbers {
 			// If winning number, run forward and propagate
 			if slices.Contains(got_numbers, winning_number) && winning_number != "" {
