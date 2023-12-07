@@ -6,11 +6,11 @@ import (
 	"strings"
 )
 
-func Solution() (solution1, solution2 int) {
+func Solution(input string) (solution1, solution2 int) {
 	// Solution 1
-	s_rt := strings.Fields(strings.Split(INPUT, "\n")[0])[1:]
-	s_rd := strings.Fields(strings.Split(INPUT, "\n")[1])[1:]
-	
+	s_rt := strings.Fields(strings.Split(input, "\n")[0])[1:]
+	s_rd := strings.Fields(strings.Split(input, "\n")[1])[1:]
+
 	solution1 = 1
 
 	// Left here for honesty XD
@@ -38,7 +38,7 @@ func Solution() (solution1, solution2 int) {
 		rd_i, _ := strconv.Atoi(s_rd[i])
 		rd := float64(rd_i)
 
-		dsc := rt*rt - 4 * (-1) * (-rd)
+		dsc := rt*rt - 4*(-1)*(-rd)
 		x1 := ((-rt) + math.Sqrt(dsc)) / (2 * -1)
 		x2 := ((-rt) - math.Sqrt(dsc)) / (2 * (-1))
 
@@ -46,9 +46,9 @@ func Solution() (solution1, solution2 int) {
 	}
 
 	// Solution 2
-	rt_s := strings.Split(strings.ReplaceAll(strings.Split(INPUT, "\n")[0], " ", ""), ":")[1]
-	rd_s := strings.Split(strings.ReplaceAll(strings.Split(INPUT, "\n")[1], " ", ""), ":")[1]
-	
+	rt_s := strings.Split(strings.ReplaceAll(strings.Split(input, "\n")[0], " ", ""), ":")[1]
+	rd_s := strings.Split(strings.ReplaceAll(strings.Split(input, "\n")[1], " ", ""), ":")[1]
+
 	// Left here for honesty XD
 	// solution2 = 0
 	// rt, _ := strconv.Atoi(rt_s)
@@ -69,7 +69,7 @@ func Solution() (solution1, solution2 int) {
 	rd_i, _ := strconv.Atoi(rd_s)
 	rd := float64(rd_i)
 
-	dsc := rt*rt - 4 * (-1) * (-rd)
+	dsc := rt*rt - 4*(-1)*(-rd)
 	x1 := ((-rt) + math.Sqrt(dsc)) / (2 * -1)
 	x2 := ((-rt) - math.Sqrt(dsc)) / (2 * (-1))
 
@@ -77,6 +77,3 @@ func Solution() (solution1, solution2 int) {
 
 	return
 }
-
-var INPUT = `Time:        54     94     65     92
-Distance:   302   1476   1029   1404`
