@@ -9,6 +9,7 @@ import (
 	"aoc2023/day5"
 	"aoc2023/day6"
 	"aoc2023/day7"
+	"aoc2023/day8"
 	"flag"
 	"fmt"
 	"math/rand"
@@ -27,6 +28,7 @@ var day_mapping = []func(string) (int, int){
 	day5.Solution,
 	day6.Solution,
 	day7.Solution,
+	day8.Solution,
 }
 
 var URL = "https://adventofcode.com/2023"
@@ -53,6 +55,10 @@ func main() {
 		se = *session
 	} else {
 		se = os.Getenv("AOC_SESSION")
+	}
+
+	if se == "" {
+		fmt.Printf("\nWARNING: Without real input, only first input on the page is used. It may not work properly with solutions.\n\n")
 	}
 
 	// Check exclusivity of flags
