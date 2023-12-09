@@ -6,16 +6,17 @@ import (
 
 func Solution(input string) (solution1, solution2 int) {
 	// Solution 1
-	instructions := strings.Split(input, "\n\n")[0]
-	mapping_s := strings.Split(input, "\n\n")[1]
+	instructions := strings.Split(input, "\n\n")[0] // Get instructions
+	mapping_s := strings.Split(input, "\n\n")[1]    // Get mappings
 
 	var mapping = map[string][2]string{}
 
+	// Build map for fast checks
 	for _, line := range strings.Split(mapping_s, "\n") {
 		key := strings.Split(line, " = ")[0]
 		mapping[key] = [2]string{
-			strings.Trim(strings.Split(strings.Split(line, " = ")[1], ", ")[0], "("),
-			strings.Trim(strings.Split(strings.Split(line, " = ")[1], ", ")[1], ")"),
+			strings.Trim(strings.Split(strings.Split(line, " = ")[1], ", ")[0], "("), // Add L move coordinate
+			strings.Trim(strings.Split(strings.Split(line, " = ")[1], ", ")[1], ")"), // Add R move coordinate
 		}
 	}
 
@@ -26,16 +27,17 @@ func Solution(input string) (solution1, solution2 int) {
 
 	for {
 		if rune(instructions[ii]) == 'R' {
-			cur = mapping[cur][1]
+			cur = mapping[cur][1] // Move to R cooerdinate
 		} else {
-			cur = mapping[cur][0]
+			cur = mapping[cur][0] // Move to L cooerdinate
 		}
 		solution1++
 
-		if cur == "ZZZ" {
+		if cur == "ZZZ" { // Check if on finish
 			break
 		}
 
+		// Get next instruction index (can be looped over if finished)
 		if ii == len(instructions)-1 {
 			ii = 0
 		} else {
@@ -44,16 +46,16 @@ func Solution(input string) (solution1, solution2 int) {
 	}
 
 	// Solution 2
-	instructions = strings.Split(input, "\n\n")[0]
-	mapping_s = strings.Split(input, "\n\n")[1]
+	instructions = strings.Split(input, "\n\n")[0] // instructions
+	mapping_s = strings.Split(input, "\n\n")[1]    // Get mappings
 
 	mapping = map[string][2]string{}
 
 	for _, line := range strings.Split(mapping_s, "\n") {
 		key := strings.Split(line, " = ")[0]
 		mapping[key] = [2]string{
-			strings.Trim(strings.Split(strings.Split(line, " = ")[1], ", ")[0], "("),
-			strings.Trim(strings.Split(strings.Split(line, " = ")[1], ", ")[1], ")"),
+			strings.Trim(strings.Split(strings.Split(line, " = ")[1], ", ")[0], "("), // Add L move coordinate
+			strings.Trim(strings.Split(strings.Split(line, " = ")[1], ", ")[1], ")"), // Add R move coordinate
 		}
 	}
 
@@ -61,13 +63,13 @@ func Solution(input string) (solution1, solution2 int) {
 		curs []string
 		ress []int
 	)
-	for k := range mapping {
+	for k := range mapping { // Get all starting coordinates
 		if rune(k[2]) == 'A' {
 			curs = append(curs, k)
 		}
 	}
 
-	for _, cur := range curs {
+	for _, cur := range curs { // For every starting coordinate
 		var (
 			count = 0
 			ii    = 0
@@ -75,16 +77,17 @@ func Solution(input string) (solution1, solution2 int) {
 
 		for {
 			if rune(instructions[ii]) == 'R' {
-				cur = mapping[cur][1]
+				cur = mapping[cur][1] // Move to R cooerdinate
 			} else {
-				cur = mapping[cur][0]
+				cur = mapping[cur][0] // Move to L cooerdinate
 			}
 			count++
 
-			if rune(cur[2]) == 'Z' {
+			if rune(cur[2]) == 'Z' { // Check if on finish
 				break
 			}
 
+			// Get next instruction index (can be looped over if finished)
 			if ii == len(instructions)-1 {
 				ii = 0
 			} else {
@@ -93,14 +96,14 @@ func Solution(input string) (solution1, solution2 int) {
 		}
 		ress = append(ress, count)
 	}
-	if len(ress) > 1 {
-		solution2 = LCM(ress[0], ress[1], ress...)
-	} else {
-		solution1 = ress[0]
-	}
+
+	// Find first sync point when all starts lead to ends using LCM
+	solution2 = LCM(ress...)
 
 	return
 }
+
+// LCM implementation adjusted from https://go.dev/play/p/SmzvkDjYlb
 
 // greatest common divisor (GCD) via Euclidean algorithm
 func GCD(a, b int) int {
@@ -113,10 +116,16 @@ func GCD(a, b int) int {
 }
 
 // find Least Common Multiple (LCM) via GCD
-func LCM(a, b int, integers ...int) int {
-	result := a * b / GCD(a, b)
+func LCM(integers ...int) int {
+	if len(integers) == 0 {
+		return 0
+	} else if len(integers) == 1 {
+		return integers[0]
+	}
 
-	for i := 0; i < len(integers); i++ {
+	result := integers[0] * integers[1] / GCD(integers[0], integers[1])
+
+	for i := 2; i < len(integers); i++ {
 		result = LCM(result, integers[i])
 	}
 

@@ -10,6 +10,7 @@ import (
 	"aoc2023/day6"
 	"aoc2023/day7"
 	"aoc2023/day8"
+	"aoc2023/day9"
 	"flag"
 	"fmt"
 	"math/rand"
@@ -29,6 +30,7 @@ var day_mapping = []func(string) (int, int){
 	day6.Solution,
 	day7.Solution,
 	day8.Solution,
+	day9.Solution,
 }
 
 var URL = "https://adventofcode.com/2023"
