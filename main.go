@@ -3,6 +3,7 @@ package main
 import (
 	"aoc2023/aoc_utils"
 	"aoc2023/day1"
+	"aoc2023/day10"
 	"aoc2023/day2"
 	"aoc2023/day3"
 	"aoc2023/day4"
@@ -31,6 +32,7 @@ var day_mapping = []func(string) (int, int){
 	day7.Solution,
 	day8.Solution,
 	day9.Solution,
+	day10.Solution,
 }
 
 var URL = "https://adventofcode.com/2023"
