@@ -25,7 +25,7 @@ func Solution(input string) (solution1, solution2 int) {
 			rci, _ := strconv.Atoi(rc)
 			runs = append(runs, rci)
 		}
-		solution1 += recur2(rs, runs, nil)
+		solution1 += recur(rs, runs, nil)
 
 		new_rs = rs
 		new_runs = runs
@@ -35,20 +35,25 @@ func Solution(input string) (solution1, solution2 int) {
 		}
 
 		cache = map[float64]int{}
-		solution2 += recur2(new_rs, new_runs, cache)
-		// fmt.Println(cache)
+		solution2 += recur(new_rs, new_runs, cache)
 	}
 
 	return
 }
 
 // Cached Using map, to map integers, Cantor pairing function is used
-func recur2(line string, runs []int, cache map[float64]int) (res int) {
+func recur(line string, runs []int, cache map[float64]int) (res int) {
 	uid := 0.5*float64(len(line)+len(runs))*float64(len(line)+len(runs)+1) + float64(len(runs)) // Calculate cache key
+
+	defer func() { // Update cache after all cchecks
+		if cache != nil {
+			cache[uid] = res
+		}
+	}()
 
 	if len(line) == 0 {
 		if len(runs) == 0 {
-			res++ // Runs & line done
+			res = 1 // Runs & line done
 		}
 		return // Line ended
 	}
@@ -59,32 +64,29 @@ func recur2(line string, runs []int, cache map[float64]int) (res int) {
 		}
 	}
 
-	if line[0] == '.' {
-		res = recur2(line[1:], runs, cache) // Move further, trimming "."
-	} else {
-		if line[0] == '?' {
-			res += recur2(line[1:], runs, cache) // Move further, trimming "."
-		}
-		if len(runs) > 0 {
-			count := 0 // Acceptable rune counter
-			for _, char := range line {
-				if count > runs[0] || char == '.' || count == runs[0] && char == '?' {
-					break // No point checking further
-				}
-				count += 1
+	switch line[0] {
+	case '?':
+		res = recur(line[1:], runs, cache) + recur("#"+line[1:], runs, cache) // Check both "." and "#" cases going further down with current run
+		return
+	case '#':
+		if len(runs) == 0 {
+			return // No more runs to check
+		} else if len(line) < runs[0] {
+			return // Run does not fit
+		} else if strings.Count(line[:runs[0]], ".") > 0 {
+			return // Run does not fit due toi a "."
+		} else if len(runs) > 1 {
+			if len(line) > runs[0] && line[runs[0]] != '#' {
+				res = recur(line[runs[0]+1:], runs[1:], cache) // Jump the run in line, go further down with next run
 			}
-
-			if count == runs[0] {
-				if count < len(line) && line[count] != '#' {
-					res += recur2(line[count+1:], runs[1:], cache) // Jump all counted and done run, and move firther
-				} else {
-					res += recur2(line[count:], runs[1:], cache) // Jump all counted, last one is "." anyway, and done run, and move firther
-				}
-			}
+			return
+		} else {
+			res = recur(line[runs[0]:], runs[1:], cache) // Jump the run in line, go further down with next run
+			return
 		}
+	case '.':
+		res = recur(line[1:], runs, cache) // Go further with current run
+		return
 	}
-	if cache != nil {
-		cache[uid] = res // Update cache
-	}
-	return
+	panic("Error in branching")
 }
