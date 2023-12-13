@@ -1,10 +1,15 @@
 package day8
 
 import (
+	_ "embed"
 	"strings"
 )
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = strings.Trim(TEST_INPUT, "\r\n")
+	}
+
 	// Solution 1
 	instructions := strings.Split(input, "\n\n")[0] // Get instructions
 	mapping_s := strings.Split(input, "\n\n")[1]    // Get mappings
@@ -131,3 +136,6 @@ func LCM(integers ...int) int {
 
 	return result
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

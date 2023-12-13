@@ -22,6 +22,9 @@ For puzzles please visit [AoC website](https://adventofcode.com/2023)
 
 Solutions are designed to run as:
 
+> [!NOTE]
+> If running without AoC Session defined, solutions will run on predefined baked-in test inputs.
+
 ```sh
 $ go run main.go --all
 ```

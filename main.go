@@ -6,6 +6,7 @@ import (
 	"aoc2023/day10"
 	"aoc2023/day11"
 	"aoc2023/day12"
+	"aoc2023/day13"
 	"aoc2023/day2"
 	"aoc2023/day3"
 	"aoc2023/day4"
@@ -37,14 +38,16 @@ var day_mapping = []func(string) (int, int){
 	day10.Solution,
 	day11.Solution,
 	day12.Solution,
+	day13.Solution,
 }
 
 var URL = "https://adventofcode.com/2023"
 
 func main() {
 	var (
-		d2d []string
-		se  string
+		d2d   []string
+		se    string
+		input string
 	)
 
 	// Decoration
@@ -66,7 +69,7 @@ func main() {
 	}
 
 	if se == "" {
-		fmt.Printf("\nWARNING: Without real input, only first input on the page is used. It may not work properly with solutions.\n\n")
+		fmt.Printf("\nWARNING: Rinning on predefined tests inputs.\n\n")
 	}
 
 	// Check exclusivity of flags
@@ -92,7 +95,9 @@ func main() {
 	// NOTE: input athering can be optimized using goroutines
 	for n_day := 0; n_day < len(day_mapping); n_day++ {
 		if slices.Contains(d2d, strconv.Itoa(n_day+1)) || *all_flag {
-			input := aoc_utils.GetInputData(URL, strconv.Itoa(n_day+1), se)
+			if se != "" {
+				input = aoc_utils.GetInputData(URL, strconv.Itoa(n_day+1), se)
+			}
 			s1, s2 := day_mapping[n_day](input)
 			fmt.Println("AoC 2023 Day", n_day+1)
 			fmt.Printf("\tSolution 1: %d\n\tSolution 2: %d\n\n", s1, s2)

@@ -1,12 +1,17 @@
 package day6
 
 import (
+	_ "embed"
 	"math"
 	"strconv"
 	"strings"
 )
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = strings.Trim(TEST_INPUT, "\r\n")
+	}
+
 	// Solution 1
 	s_rt := strings.Fields(strings.Split(input, "\n")[0])[1:]
 	s_rd := strings.Fields(strings.Split(input, "\n")[1])[1:]
@@ -77,3 +82,6 @@ func Solution(input string) (solution1, solution2 int) {
 
 	return
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

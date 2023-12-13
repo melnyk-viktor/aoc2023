@@ -1,6 +1,7 @@
 package day11
 
 import (
+	_ "embed"
 	"math"
 	"slices"
 	"strings"
@@ -9,6 +10,10 @@ import (
 var P2EXP = 999999 // 1000000 - 1 accounting for already existing row
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = TEST_INPUT
+	}
+
 	// Solution 1
 	var (
 		gl        [][2]int // Galaxies
@@ -141,3 +146,6 @@ func Solution(input string) (solution1, solution2 int) {
 
 	return
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

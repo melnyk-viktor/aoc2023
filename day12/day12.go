@@ -1,11 +1,16 @@
 package day12
 
 import (
+	_ "embed"
 	"strconv"
 	"strings"
 )
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = strings.Trim(TEST_INPUT, "\r\n")
+	}
+
 	// Solution 1 & 2
 	rows := strings.Split(input, "\n")
 
@@ -90,3 +95,6 @@ func recur(line string, runs []int, cache map[float64]int) (res int) {
 	}
 	panic("Error in branching")
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

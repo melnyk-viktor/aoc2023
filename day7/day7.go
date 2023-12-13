@@ -1,6 +1,7 @@
 package day7
 
 import (
+	_ "embed"
 	"sort"
 	"strconv"
 	"strings"
@@ -48,6 +49,10 @@ var pow_map_j = map[rune]int{
 }
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = strings.Trim(TEST_INPUT, "\r\n")
+	}
+
 	// Solution 1
 	/*
 		Representation combinations as min-max card counts:
@@ -208,3 +213,6 @@ func Solution(input string) (solution1, solution2 int) {
 
 	return
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

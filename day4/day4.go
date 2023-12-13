@@ -1,11 +1,16 @@
 package day4
 
 import (
+	_ "embed"
 	"slices"
 	"strings"
 )
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = strings.Trim(TEST_INPUT, "\r\n")
+	}
+
 	// Solution 1
 	lines := strings.Split(input, "\n")
 	for _, line := range lines {
@@ -51,3 +56,6 @@ func Solution(input string) (solution1, solution2 int) {
 
 	return
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

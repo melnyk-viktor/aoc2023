@@ -1,6 +1,7 @@
 package day5
 
 import (
+	_ "embed"
 	"math"
 	"slices"
 	"strconv"
@@ -13,6 +14,10 @@ type Interval struct {
 }
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = strings.Trim(TEST_INPUT, "\r\n")
+	}
+
 	// Solution 1
 	s_stp := strings.Split(strings.Split(input, "\n")[0], " ")[1:]
 
@@ -113,3 +118,6 @@ func Solution(input string) (solution1, solution2 int) {
 
 	return
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

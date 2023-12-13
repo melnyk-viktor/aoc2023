@@ -1,6 +1,7 @@
 package day10
 
 import (
+	_ "embed"
 	"slices"
 	"strings"
 )
@@ -12,6 +13,10 @@ type node struct {
 }
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = strings.Trim(TEST_INPUT, "\r\n")
+	}
+
 	// Solution 1 & 2
 	pipe_map := strings.Split(input, "\n")
 
@@ -270,3 +275,6 @@ func get_connected_nodes(c node, from *node, pipe_map []string) (*node, int, [][
 		return &node{coords: [2]int{-1, -1}}, -1, [][2]int{{-1, -1}}
 	}
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

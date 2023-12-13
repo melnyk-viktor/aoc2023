@@ -1,12 +1,17 @@
 package day9
 
 import (
+	_ "embed"
 	"sort"
 	"strconv"
 	"strings"
 )
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = strings.Trim(TEST_INPUT, "\r\n")
+	}
+
 	// Solution 1 & 2
 	histories := strings.Split(input, "\n")
 
@@ -57,3 +62,6 @@ func generate_diff(seq []int) []int {
 	}
 	return res
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

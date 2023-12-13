@@ -1,11 +1,19 @@
 package dayN
 
-func Solution(input string) (solution1, solution2 int) {
-	// Solution 1
+import (
+	_ "embed"
+)
 
+func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = TEST_INPUT
+	}
+	// Solution 1
 
 	// Solution 2
 
-
 	return
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string

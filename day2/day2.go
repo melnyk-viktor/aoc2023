@@ -2,11 +2,16 @@ package day2
 
 import (
 	"bufio"
+	_ "embed"
 	"strconv"
 	"strings"
 )
 
 func Solution(input string) (solution1, solution2 int) {
+	if input == "" {
+		input = strings.Trim(TEST_INPUT, "\r\n")
+	}
+
 	// Solution 1
 	var count = 0
 	scanner := bufio.NewScanner(strings.NewReader(input))
@@ -71,3 +76,6 @@ var COLOR_MAX = map[string]int{
 	"green": 13,
 	"blue":  14,
 }
+
+//go:embed test_data.txt
+var TEST_INPUT string
