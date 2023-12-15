@@ -1,6 +1,14 @@
 package main
 
 import (
+	"flag"
+	"fmt"
+	"math/rand"
+	"os"
+	"slices"
+	"strconv"
+	"strings"
+
 	"aoc2023/aoc_utils"
 	"aoc2023/day1"
 	"aoc2023/day10"
@@ -8,6 +16,7 @@ import (
 	"aoc2023/day12"
 	"aoc2023/day13"
 	"aoc2023/day14"
+	"aoc2023/day15"
 	"aoc2023/day2"
 	"aoc2023/day3"
 	"aoc2023/day4"
@@ -16,13 +25,6 @@ import (
 	"aoc2023/day7"
 	"aoc2023/day8"
 	"aoc2023/day9"
-	"flag"
-	"fmt"
-	"math/rand"
-	"os"
-	"slices"
-	"strconv"
-	"strings"
 )
 
 // Solutions mapping
@@ -41,6 +43,7 @@ var day_mapping = []func(string) (int, int){
 	day12.Solution,
 	day13.Solution,
 	day14.Solution,
+	day15.Solution,
 }
 
 var URL = "https://adventofcode.com/2023"
