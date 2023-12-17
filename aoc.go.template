@@ -2,6 +2,7 @@ package dayN
 
 import (
 	_ "embed"
+	"strings"
 )
 
 func Solution(input string) (solution1, solution2 int) {

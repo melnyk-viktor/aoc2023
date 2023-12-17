@@ -18,6 +18,7 @@ import (
 	"aoc2023/day14"
 	"aoc2023/day15"
 	"aoc2023/day16"
+	"aoc2023/day17"
 	"aoc2023/day2"
 	"aoc2023/day3"
 	"aoc2023/day4"
@@ -46,6 +47,7 @@ var day_mapping = []func(string) (int, int){
 	day14.Solution,
 	day15.Solution,
 	day16.Solution,
+	day17.Solution,
 }
 
 var URL = "https://adventofcode.com/2023"
